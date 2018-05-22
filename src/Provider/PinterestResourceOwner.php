@@ -36,7 +36,10 @@ class PinterestResourceOwner implements ResourceOwnerInterface
      */
     public function getImageurl()
     {
-        return $this->response['data']['profile_picture'] ?: null;
+        if (empty($this->response['data']['image']['60x60']['url'])) {
+            return null;
+        }
+        return $this->response['data']['image']['60x60']['url'];
     }
     /**
      * Alias for getImageurl() for higher compatablility.
