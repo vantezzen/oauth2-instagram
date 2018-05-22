@@ -69,6 +69,27 @@ if (!isset($_GET['code'])) {
 }
 ```
 
+### Managing Scopes
+
+When creating your Instagram authorization URL, you can specify the state and scopes your application may authorize.
+
+```php
+$options = [
+    'state' => 'OPTIONAL_CUSTOM_CONFIGURED_STATE',
+    'scope' => ['read_public', 'write_public'] // array or string
+];
+
+$authorizationUrl = $provider->getAuthorizationUrl($options);
+```
+If neither are defined, the provider will utilize internal defaults.
+
+At the time of authoring this documentation, the [following scopes are available](https://developers.pinterest.com/docs/api/overview/#scopes).
+
+- read_public
+- write_public
+- read_relationships
+- write_relationships
+
 ## Testing
 
 ``` bash
