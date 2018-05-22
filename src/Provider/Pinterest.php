@@ -2,11 +2,11 @@
 
 namespace League\OAuth2\Client\Provider;
 
-use League\OAuth2\Client\Provider\Exception\InstagramIdentityProviderException;
+use League\OAuth2\Client\Provider\Exception\PinterestIdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Http\Message\ResponseInterface;
 
-class Instagram extends AbstractProvider
+class Pinterest extends AbstractProvider
 {
     /**
      * @var string Key used in a token response to identify the resource owner.
@@ -25,7 +25,7 @@ class Instagram extends AbstractProvider
      *
      * @var string
      */
-    protected $host = 'https://api.instagram.com';
+    protected $host = 'https://api.pinterest.com/v1';
 
     /**
      * Gets host.
@@ -47,6 +47,7 @@ class Instagram extends AbstractProvider
         return ' ';
     }
 
+
     /**
      * Get authorization url to begin OAuth flow
      *
@@ -54,7 +55,7 @@ class Instagram extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return $this->host.'/oauth/authorize';
+        return 'https://api.pinterest.com/oauth';
     }
 
     /**
@@ -66,9 +67,9 @@ class Instagram extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->host.'/oauth/access_token';
+        return 'https://api.pinterest.com/v1/oauth/token';
     }
-
+    
     /**
      * Get provider url to fetch user details
      *
@@ -78,7 +79,9 @@ class Instagram extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return $this->host.'/v1/users/self?access_token='.$token;
+        $url = "https://api.pinterest.com/v1/me/?access_token={$token->getToken()}";
+        $url .= "&fields=first_name%2Cid%2Clast_name%2Curl%2Cimage%2Cusername%2Ccreated_at%2Ccounts";
+        return $url;
     }
 
     /**
@@ -121,9 +124,9 @@ class Instagram extends AbstractProvider
      */
     protected function getDefaultScopes()
     {
-        return $this->defaultScopes;
+        return ['read_public'];
     }
-
+    
     /**
      * Check a provider response for errors.
      *
@@ -135,17 +138,15 @@ class Instagram extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-        // Standard error response format
-        if (!empty($data['meta']['error_type'])) {
-            throw InstagramIdentityProviderException::clientException($response, $data);
-        }
-
-        // OAuthException error response format
-        if (!empty($data['error_type'])) {
-            throw InstagramIdentityProviderException::oauthException($response, $data);
+        if ($response->getStatusCode() >= 400) {
+            throw new IdentityProviderException(
+                $data['message'] ?: $response->getReasonPhrase(),
+                $response->getStatusCode(),
+                $response
+            );
         }
     }
-
+    
     /**
      * Generate a user object from a successful user details request.
      *
@@ -155,7 +156,7 @@ class Instagram extends AbstractProvider
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
-        return new InstagramResourceOwner($response);
+        return new PinterestResourceOwner($response);
     }
 
     /**

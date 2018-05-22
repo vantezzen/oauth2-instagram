@@ -1,10 +1,6 @@
-# Instagram Provider for OAuth 2.0 Client
-[![Latest Version](https://img.shields.io/github/release/thephpleague/oauth2-instagram.svg?style=flat-square)](https://github.com/thephpleague/oauth2-instagram/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/thephpleague/oauth2-instagram/master.svg?style=flat-square)](https://travis-ci.org/thephpleague/oauth2-instagram)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/thephpleague/oauth2-instagram.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/oauth2-instagram/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/thephpleague/oauth2-instagram.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/oauth2-instagram)
-[![Total Downloads](https://img.shields.io/packagist/dt/league/oauth2-instagram.svg?style=flat-square)](https://packagist.org/packages/league/oauth2-instagram)
+# Pinterest Provider for OAuth 2.0 Client
+[![Latest Version](https://img.shields.io/github/release/vantezzen/oauth2-pinterest.svg?style=flat-square)](https://github.com/vantezzen/oauth2-pinterest/releases)
+[![Total Downloads](https://img.shields.io/packagist/dt/vantezzen/oauth2-pinterest.svg?style=flat-square)](https://packagist.org/packages/vantezzen/oauth2-pinterest)
 
 This package provides Instagram OAuth 2.0 support for the PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client).
 
@@ -13,21 +9,23 @@ This package provides Instagram OAuth 2.0 support for the PHP League's [OAuth 2.
 To install, use composer:
 
 ```
-composer require league/oauth2-instagram
+composer require vantezzen/oauth2-pinterest
 ```
+
+## Credit
+This package has originally been coded and published by [ajibarra](https://github.com/ajibarra/oauth2-pinterest) and has only been updated and optimized using the [oauth2-instagram package](https://github.com/thephpleague/oauth2-instagram).
 
 ## Usage
 
-Usage is the same as The League's OAuth client, using `\League\OAuth2\Client\Provider\Instagram` as the provider.
+Usage is the same as The League's OAuth client, using `\League\OAuth2\Client\Provider\Pinterest` as the provider.
 
 ### Authorization Code Flow
 
 ```php
-$provider = new League\OAuth2\Client\Provider\Instagram([
-    'clientId'          => '{instagram-client-id}',
-    'clientSecret'      => '{instagram-client-secret}',
-    'redirectUri'       => 'https://example.com/callback-url',
-    'host'              => 'https://api.instagram.com' // Optional, defaults to https://api.instagram.com
+$provider = new League\OAuth2\Client\Provider\Pinterest([
+    'clientId'          => '{pinterest-client-id}',
+    'clientSecret'      => '{pinterest-client-secret}',
+    'redirectUri'       => 'https://example.com/callback-url'
 ]);
 
 if (!isset($_GET['code'])) {
@@ -71,27 +69,6 @@ if (!isset($_GET['code'])) {
 }
 ```
 
-### Managing Scopes
-
-When creating your Instagram authorization URL, you can specify the state and scopes your application may authorize.
-
-```php
-$options = [
-    'state' => 'OPTIONAL_CUSTOM_CONFIGURED_STATE',
-    'scope' => ['basic','likes','comments'] // array or string
-];
-
-$authorizationUrl = $provider->getAuthorizationUrl($options);
-```
-If neither are defined, the provider will utilize internal defaults.
-
-At the time of authoring this documentation, the [following scopes are available](https://instagram.com/developer/authentication/#scope).
-
-- basic
-- comments
-- relationships
-- likes
-
 ## Testing
 
 ``` bash
@@ -100,15 +77,18 @@ $ ./vendor/bin/phpunit
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/thephpleague/oauth2-instagram/blob/master/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/vantezzen/oauth2-pinterest/blob/master/CONTRIBUTING.md) for details.
 
 
 ## Credits
 
+- [vantezzen](https://github.com/vantezzen)
 - [Steven Maguire](https://github.com/stevenmaguire)
-- [All Contributors](https://github.com/thephpleague/oauth2-instagram/contributors)
+- [ajibarra](https://github.com/ajibarra)
+- [The PHP League](https://github.com/thephpleague)
+- [All Contributors](https://github.com/vantezzen/oauth2-pinterest/contributors)
 
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/thephpleague/oauth2-instagram/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/vantezzen/oauth2-pinterest/blob/master/LICENSE) for more information.

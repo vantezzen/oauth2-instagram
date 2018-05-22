@@ -4,7 +4,7 @@ namespace League\OAuth2\Client\Provider\Exception;
 
 use Psr\Http\Message\ResponseInterface;
 
-class InstagramIdentityProviderException extends IdentityProviderException
+class PinterestIdentityProviderException extends IdentityProviderException
 {
     /**
      * Creates client exception from response.

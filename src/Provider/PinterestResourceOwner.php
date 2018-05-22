@@ -1,6 +1,6 @@
 <?php namespace League\OAuth2\Client\Provider;
 
-class InstagramResourceOwner implements ResourceOwnerInterface
+class PinterestResourceOwner implements ResourceOwnerInterface
 {
     /**
      * Raw response
@@ -38,15 +38,42 @@ class InstagramResourceOwner implements ResourceOwnerInterface
     {
         return $this->response['data']['profile_picture'] ?: null;
     }
-
     /**
-     * Get user name
+     * Alias for getImageurl() for higher compatablility.
      *
      * @return string|null
      */
-    public function getName()
+    public function getAvatar()
     {
-        return $this->response['data']['full_name'] ?: null;
+        return $this->getImageurl();
+    }
+    /**
+     * Alias for getImageurl() for higher compatablility.
+     *
+     * @return string|null
+     */
+    public function getPictureUrl()
+    {
+        return $this->getImageurl();
+    }
+
+    /**
+     * Get resource first name.
+     *
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->response['data']['first_name'] ?: null;
+    }
+    /**
+     * Get resource last name.
+     *
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->response['data']['last_name'] ?: null;
     }
 
     /**
@@ -58,15 +85,24 @@ class InstagramResourceOwner implements ResourceOwnerInterface
     {
         return $this->response['data']['username'] ?: null;
     }
-
     /**
-     * Get user description
+     * Alias for getNickname() for higher compatablility.
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getUsername()
     {
-        return $this->response['data']['bio'] ?: null;
+        return $this->getNickname();
+    }
+
+    /**
+     * Get resource url.
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->response['data']['url'] ?: null;
     }
 
     /**

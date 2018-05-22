@@ -1,12 +1,12 @@
 {
-    "name": "league/oauth2-instagram",
-    "description": "Instagram OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+    "name": "vantezzen/oauth2-pinterest",
+    "description": "Pinterest OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
     "license": "MIT",
     "authors": [
         {
-            "name": "Steven Maguire",
-            "email": "stevenmaguire@gmail.com",
-            "homepage": "https://github.com/stevenmaguire"
+            "name": "vantezzen",
+            "email": "vantezzen@gmail.com",
+            "homepage": "https://github.com/vantezzen"
         }
     ],
     "keywords": [
@@ -15,7 +15,7 @@
         "client",
         "authorization",
         "authorisation",
-        "instagram"
+        "pinterest"
     ],
     "require": {
         "league/oauth2-client": "^2.0",
