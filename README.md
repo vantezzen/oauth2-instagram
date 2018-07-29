@@ -2,7 +2,7 @@
 [![Latest Version](https://img.shields.io/github/release/vantezzen/oauth2-pinterest.svg?style=flat-square)](https://github.com/vantezzen/oauth2-pinterest/releases)
 [![Total Downloads](https://img.shields.io/packagist/dt/vantezzen/oauth2-pinterest.svg?style=flat-square)](https://packagist.org/packages/vantezzen/oauth2-pinterest)
 
-This package provides Instagram OAuth 2.0 support for the PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client).
+This package provides Pinterest OAuth 2.0 support for the PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client).
 
 ## Installation
 
@@ -71,7 +71,7 @@ if (!isset($_GET['code'])) {
 
 ### Managing Scopes
 
-When creating your Instagram authorization URL, you can specify the state and scopes your application may authorize.
+When creating your Pinterest authorization URL, you can specify the state and scopes your application may authorize.
 
 ```php
 $options = [
